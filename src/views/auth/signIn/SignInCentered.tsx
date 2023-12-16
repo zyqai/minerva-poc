@@ -20,8 +20,8 @@
 
 */
 
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 // Chakra imports
 import {
   Box,
@@ -46,10 +46,16 @@ import { RiEyeCloseLine } from 'react-icons/ri';
 // Custom components
 import { HSeparator } from 'components/separator/Separator';
 import CenteredAuth from 'layouts/auth/variants/Centered';
+import { async } from 'q';
 
 function SignIn() {
+  const navigate = useNavigate();
+
+    
+
   // Chakra color mode
   const textColor = useColorModeValue('navy.700', 'white');
+  const errorMsgColor = useColorModeValue('red.600', 'white');
   const textColorSecondary = 'gray.400';
   const textColorDetails = useColorModeValue('navy.700', 'secondaryGray.600');
   const textColorBrand = useColorModeValue('brand.500', 'white');
@@ -66,14 +72,55 @@ function SignIn() {
   );
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [errorLogin, setErrorLogin] = React.useState(false);
+  const [errorMsg, setErrorMsg] = React.useState('Invalid Username or Password');
 
 
   const doLoginAuthentication = (e:any): any => {
    console.log(e);
     console.log(userName);
     console.log(password);
+    if(userName ==='admin' && password ==='admin') {
+      setErrorLogin(false);
+      setErrorMsg("");
+      navigate("/admin");
+      // doAuthentication(userName, password);
+    } else {
+      setErrorLogin(true);
+      setErrorMsg("Invalid Username or Password");
+      setUserName('');
+      setPassword('');
+    }
     return null;
   }
+
+//    const doAuthentication => async login {
+//     // POST request using fetch with async/await
+//     const requestOptions = {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ title: 'React POST Request Example' })
+//     };
+//     const response = await fetch('https://reqres.in/api/posts', requestOptions);
+//     const data = await response.json();
+//     // this.setState({ postId: data.id });
+// }
+
+// useEffect(() => {
+//     const doAuthentication: any => async () => {
+//       const requestOptions = {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ username: userName, password: password })
+//       };
+//       const response = await fetch('https://api-dev.minerva.zyq.ai/login', requestOptions);
+//       const data = await response.json();
+//       }
+//     }
+//   // React advises to declare the async function directly inside useEffect
+//       , 
+//     []);
+
 
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
@@ -118,11 +165,11 @@ function SignIn() {
           mb={{ base: '20px', md: 'auto' }}
         >
          
-          <Flex align="center" mb="25px">
-            <HSeparator />
-            
-            <HSeparator />
-          </Flex>
+          {
+            errorLogin? <Flex align="center" mb="25px">
+              <Text color={errorMsgColor}>{errorMsg}</Text>
+            </Flex>: ""
+          }
           <FormControl>
             <FormLabel
               display="flex"
@@ -140,7 +187,7 @@ function SignIn() {
               fontSize="sm"
               ms={{ base: '0px', md: '0px' }}
               type="text"
-              placeholder="mail@simmmple.com"
+              placeholder="Username"
               mb="24px"
               fontWeight="500"
               size="lg"
@@ -161,7 +208,7 @@ function SignIn() {
                 isRequired={true}
                 fontSize="sm"
                 ms={{ base: '0px', md: '4px' }}
-                placeholder="Min. 8 characters"
+                placeholder="Password"
                 mb="24px"
                 size="lg"
                 type={show ? 'text' : 'password'}
