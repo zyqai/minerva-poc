@@ -103,7 +103,7 @@ function SignIn() {
             fontWeight="400"
             fontSize="md"
           >
-            Enter your email and password to sign in!
+            Enter your username and password to sign in!
           </Text>
         </Box>
         <Flex
@@ -132,14 +132,14 @@ function SignIn() {
               color={textColor}
               mb="8px"
             >
-              Email<Text color={brandStars}>*</Text>
+              Username<Text color={brandStars}>*</Text>
             </FormLabel>
             <Input
               isRequired={true}
               variant="auth"
               fontSize="sm"
               ms={{ base: '0px', md: '0px' }}
-              type="email"
+              type="text"
               placeholder="mail@simmmple.com"
               mb="24px"
               fontWeight="500"
