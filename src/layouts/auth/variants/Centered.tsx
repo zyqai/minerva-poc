@@ -78,7 +78,6 @@ function AuthCentered(props: {
         ) : null}
         {children}
       </Card>
-      <Footer />
     </Flex>
   );
 }
