@@ -18,7 +18,6 @@ function AuthCentered(props: {
 }) {
   // eslint-disable-next-line
   const { children, title, description, image, cardTop, cardBottom } = props;
-  console.log(props)
   return (
     <Flex
       direction="column"

@@ -64,6 +64,16 @@ function SignIn() {
     { bg: 'secondaryGray.300' },
     { bg: 'whiteAlpha.200' },
   );
+  const [userName, setUserName] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+
+  const doLoginAuthentication = (e:any): any => {
+   console.log(e);
+    console.log(userName);
+    console.log(password);
+    return null;
+  }
 
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
@@ -134,6 +144,8 @@ function SignIn() {
               mb="24px"
               fontWeight="500"
               size="lg"
+              value = {userName}
+              onChange={ e => setUserName(e.target.value)}
             />
             <FormLabel
               ms="4px"
@@ -154,6 +166,8 @@ function SignIn() {
                 size="lg"
                 type={show ? 'text' : 'password'}
                 variant="auth"
+                value = {password}
+                onChange={ e => setPassword(e.target.value)}
               />
               <InputRightElement display="flex" alignItems="center" mt="4px">
                 <Icon
@@ -195,6 +209,7 @@ function SignIn() {
               w="100%"
               h="50"
               mb="24px"
+              onClick={ e => doLoginAuthentication(e)}
             >
               Sign In
             </Button>
