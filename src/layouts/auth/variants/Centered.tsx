@@ -18,6 +18,7 @@ function AuthCentered(props: {
 }) {
   // eslint-disable-next-line
   const { children, title, description, image, cardTop, cardBottom } = props;
+  console.log(props)
   return (
     <Flex
       direction="column"
@@ -42,7 +43,6 @@ function AuthCentered(props: {
         bgGradient="linear(to-b, brand.400, brand.600)"
         mx={{ md: 'auto' }}
       />
-      <Navbar />
       <Card
         w={{ base: '100%', md: 'max-content' }}
         h="max-content"
