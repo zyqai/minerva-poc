@@ -76,20 +76,39 @@ function SignIn() {
   const [errorMsg, setErrorMsg] = React.useState('Invalid Username or Password');
 
 
+  const [userLoggedIn, setUserLoggedIn] = React.useState(
+    JSON.parse(localStorage.getItem("userLoginStatus"))
+  );
+  
+  
+  if(userLoggedIn && (userLoggedIn?.isUserLoggedIn) ) {
+    navigate("/admin");
+  }
+
+
   const doLoginAuthentication = (e:any): any => {
    console.log(e);
     console.log(userName);
     console.log(password);
     if(userName ==='admin' && password ==='admin') {
-      setErrorLogin(false);
+      setErrorLogin(true);
       setErrorMsg("");
-      navigate("/admin");
+      
       // doAuthentication(userName, password);
+      const now = new Date()
+      const item = {
+        isUserLoggedIn: true,
+        expiry: now.getTime() + 2000,
+      }
+      localStorage.setItem("userLoginStatus", JSON.stringify(item));
+      navigate("/admin");
+
     } else {
       setErrorLogin(true);
       setErrorMsg("Invalid Username or Password");
       setUserName('');
       setPassword('');
+      localStorage.setItem('isLogin',"True");
     }
     return null;
   }

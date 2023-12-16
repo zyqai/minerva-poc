@@ -9,30 +9,41 @@ import {
   // extendTheme
 } from '@chakra-ui/react';
 import initialTheme from './theme/theme'; //  { themeGreen }
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // Chakra imports
 
 export default function Main() {
+
+  const [userLogged, setUserLogged] = useState(
+    JSON.parse(localStorage.getItem("userLoginStatus"))
+  );
+
+  
+
+  
+
   // eslint-disable-next-line
   const [currentTheme, setCurrentTheme] = useState(initialTheme);
   return (
     <ChakraProvider theme={currentTheme}>
-      <Routes>
-        <Route path="auth/*" element={<AuthLayout />} />
-        <Route
-          path="admin/*"
-          element={
-            <AdminLayout theme={currentTheme} setTheme={setCurrentTheme} />
-          }
-        />
-        <Route
-          path="rtl/*"
-          element={
-            <RTLLayout theme={currentTheme} setTheme={setCurrentTheme} />
-          }
-        />
-        <Route path="/" element={<Navigate to="/auth" replace />} />
-      </Routes>
+      <div>
+        <Routes>
+          <Route path="auth/*" element={<AuthLayout />} />
+          <Route
+            path="admin/*"
+            element={
+              <AdminLayout theme={currentTheme} setTheme={setCurrentTheme} />
+            }
+          />
+          <Route
+            path="rtl/*"
+            element={
+              <RTLLayout theme={currentTheme} setTheme={setCurrentTheme} />
+            }
+          />
+          <Route path="/" element={<Navigate to="/auth" replace />} />
+        </Routes>
+      </div>
     </ChakraProvider>
   );
 }

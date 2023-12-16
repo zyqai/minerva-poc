@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import routes from 'routes';
 
 // Chakra imports
@@ -11,10 +11,23 @@ import { SidebarContext } from 'contexts/SidebarContext';
 // Custom Chakra theme
 export default function Auth() {
   // states and functions
+  const navigate = useNavigate();
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const getRoute = () => {
     return window.location.pathname !== '/auth/full-screen-maps';
   };
+
+
+  const [userLoggedIn, setUserLoggedIn] = useState(
+    JSON.parse(localStorage.getItem("userLoginStatus"))
+  );
+  
+  
+  if(userLoggedIn && (userLoggedIn?.isUserLoggedIn) ) {
+    navigate("/admin");
+  }
+
+
   const getRoutes = (routes: RoutesType[]): any => {
     return routes.map((route, key) => {
       if (route.layout === '/auth') {

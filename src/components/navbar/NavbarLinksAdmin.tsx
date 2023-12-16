@@ -23,10 +23,12 @@ import { MdNotificationsNone, MdInfoOutline } from 'react-icons/md';
 import { FaEthereum } from 'react-icons/fa';
 import Configurator from 'components/navbar/Configurator';
 import routes from 'routes';
+import { useNavigate } from 'react-router';
 export default function HeaderLinks(props: {
   secondary: boolean;
   [x: string]: any;
 }) {
+  const navigate = useNavigate();
   const { secondary, theme, setTheme } = props;
   // Chakra Color Mode
   const navbarIcon = useColorModeValue('gray.400', 'white');
@@ -42,6 +44,13 @@ export default function HeaderLinks(props: {
     '14px 17px 40px 4px rgba(112, 144, 176, 0.06)',
   );
   const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
+
+  const logoutUser = () => {
+    localStorage.removeItem("userLoginStatus");
+    navigate('/auth');
+  }
+
+
   return (
     <Flex
       w={{ sm: '100%', md: 'auto' }}
@@ -283,6 +292,7 @@ export default function HeaderLinks(props: {
               color="red.400"
               borderRadius="8px"
               px="14px"
+              onClick={e => logoutUser()}
             >
               <Text fontSize="sm">Log out</Text>
             </MenuItem>

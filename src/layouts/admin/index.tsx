@@ -11,12 +11,25 @@ import Navbar from 'components/navbar/NavbarAdmin';
 import Sidebar from 'components/sidebar/Sidebar';
 import { SidebarContext } from 'contexts/SidebarContext';
 import { useState } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import routes from 'routes';
 
 // Custom Chakra theme
 export default function Dashboard(props: { [x: string]: any }) {
   const { ...rest } = props;
+  const navigate = useNavigate();
+
+
+  const [userLoggedIn, setUserLoggedIn] = useState(
+    JSON.parse(localStorage.getItem("userLoginStatus"))
+  );
+   
+  
+  if(!userLoggedIn || !(userLoggedIn?.isUserLoggedIn) ) {
+    navigate("/auth");
+  }
+
+
   // states and functions
   const [fixed] = useState(false);
   const [toggleSidebar, setToggleSidebar] = useState(false);
