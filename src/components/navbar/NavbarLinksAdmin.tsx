@@ -24,6 +24,7 @@ import { FaEthereum } from 'react-icons/fa';
 import Configurator from 'components/navbar/Configurator';
 import routes from 'routes';
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
 export default function HeaderLinks(props: {
   secondary: boolean;
   [x: string]: any;
@@ -48,6 +49,20 @@ export default function HeaderLinks(props: {
   const logoutUser = () => {
     localStorage.removeItem("userLoginStatus");
     navigate('/auth');
+  }
+
+  const [userLoggedIn, setUserLoggedIn] = useState(
+    JSON.parse(localStorage.getItem("userLoginStatus"))
+  );
+
+  const [userInfo, setUserInfo] = useState(
+    userLoggedIn?.userDetails?.userName
+  );
+  
+   
+  
+  if(!userLoggedIn || !(userLoggedIn?.isUserLoggedIn) ) {
+    navigate("/auth");
   }
 
 
@@ -266,7 +281,7 @@ export default function HeaderLinks(props: {
               fontWeight="700"
               color={textColor}
             >
-              👋&nbsp; Hey, Adela
+              👋&nbsp; Hey, {userInfo}
             </Text>
           </Flex>
           <Flex flexDirection="column" p="10px">

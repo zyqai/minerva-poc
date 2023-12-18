@@ -378,111 +378,11 @@ const routes = [
   // --- Authentication ---
   {
     name: 'Authentication',
-    path: '/auth',
+    layout: '/auth',
     icon: <Icon as={MdLock} width="20px" height="20px" color="inherit" />,
-    collapse: true,
-    items: [
-      // --- Sign In ---
-      {
-        name: 'Sign In',
-        path: '/sign-in',
-        collapse: true,
-        items: [
-          {
-            name: 'Default',
-            layout: '/auth',
-            path: '/sign-in/default',
-            component: <SignInDefault />,
-          },
-          {
-            name: 'Centered',
-            layout: '/auth',
-            path: '/sign-in/centered',
-            component: <SignInCentered />,
-          },
-        ],
-      },
-      // --- Sign Up ---
-      {
-        name: 'Sign Up',
-        path: '/sign-up',
-        collapse: true,
-        items: [
-          {
-            name: 'Default',
-            layout: '/auth',
-            path: '/sign-up/default',
-            component: <SignUpDefault />,
-          },
-          {
-            name: 'Centered',
-            layout: '/auth',
-            path: '/sign-up/centered',
-            component: <SignUpCentered />,
-          },
-        ],
-      },
-      // --- Verification ---
-      {
-        name: 'Verification',
-        path: '/verification',
-        collapse: true,
-        items: [
-          {
-            name: 'Default',
-            layout: '/auth',
-            path: '/verification/default',
-            component: <VerificationDefault />,
-          },
-          {
-            name: 'Centered',
-            layout: '/auth',
-            path: '/verification/centered',
-            component: <VerificationCentered />,
-          },
-        ],
-      },
-      // --- Lock ---
-      {
-        name: 'Lock',
-        path: '/lock',
-        collapse: true,
-        items: [
-          {
-            name: 'Default',
-            layout: '/auth',
-            path: '/lock/default',
-            component: <LockDefault />,
-          },
-          {
-            name: 'Centered',
-            layout: '/auth',
-            path: '/lock/centered',
-            component: <LockCentered />,
-          },
-        ],
-      },
-      // --- Forgot Password ---
-      {
-        name: 'Forgot Password',
-        path: '/forgot-password',
-        collapse: true,
-        items: [
-          {
-            name: 'Default',
-            layout: '/auth',
-            path: '/forgot-password/default',
-            component: <ForgotPasswordDefault />,
-          },
-          {
-            name: 'Centered',
-            layout: '/auth',
-            path: '/forgot-password/centered',
-            component: <ForgotPasswordCentered />,
-          },
-        ],
-      },
-    ],
+    path: '/sign-in',
+    collapse: false,
+    component: <SignInCentered />,
   },
 ];
 

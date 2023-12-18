@@ -48,6 +48,26 @@ import { HSeparator } from 'components/separator/Separator';
 import CenteredAuth from 'layouts/auth/variants/Centered';
 import { async } from 'q';
 
+async function doAuthentication(userName: string, password: string) {
+  // POST request using fetch with async/await
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+        'Access-Control-Allow-Methods': 'POST, PUT, GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+       },
+        body: JSON.stringify({ username: userName, password: password })
+    };
+
+    return await fetch('https://dev-api.minerva.zyq.ai/auth', requestOptions).then((res) => {
+      let user = null;
+      if(res.status ==200) {
+        user = res.json();
+      }
+      return user;
+    });
+}
+
 function SignIn() {
   const navigate = useNavigate();
 
@@ -86,20 +106,22 @@ function SignIn() {
   }
 
 
-  const doLoginAuthentication = (e:any): any => {
+  const doLoginAuthentication = async (e:any): Promise<any> => {
    console.log(e);
     console.log(userName);
     console.log(password);
-    if(userName ==='admin' && password ==='admin') {
+    const loginStatus =  await doAuthentication(userName, password);
+    
+    if(loginStatus != null) {
       setErrorLogin(true);
       setErrorMsg("");
-      
-      // doAuthentication(userName, password);
       const now = new Date()
       const item = {
         isUserLoggedIn: true,
+        userDetails: loginStatus,
         expiry: now.getTime() + 2000,
       }
+     
       localStorage.setItem("userLoginStatus", JSON.stringify(item));
       navigate("/admin");
 
@@ -113,17 +135,7 @@ function SignIn() {
     return null;
   }
 
-//    const doAuthentication => async login {
-//     // POST request using fetch with async/await
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ title: 'React POST Request Example' })
-//     };
-//     const response = await fetch('https://reqres.in/api/posts', requestOptions);
-//     const data = await response.json();
-//     // this.setState({ postId: data.id });
-// }
+   
 
 // useEffect(() => {
 //     const doAuthentication: any => async () => {

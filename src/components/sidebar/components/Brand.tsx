@@ -12,19 +12,9 @@ export function SidebarBrand(props: { mini: boolean; hovered: boolean }) {
 
   return (
     <Flex alignItems="center" flexDirection="column">
-      <HorizonLogo
-        h="26px"
-        w="175px"
-        my="32px"
-        color={logoColor}
-        display={
-          mini === false
-            ? 'block'
-            : mini === true && hovered === true
-            ? 'block'
-            : 'none'
-        }
-      />
+        <Text fontWeight="bold"
+            fontSize="34px">Minerva</Text>
+
       <Text
         display={
           mini === false
@@ -37,7 +27,7 @@ export function SidebarBrand(props: { mini: boolean; hovered: boolean }) {
         fontWeight="800"
         color={logoColor}
       >
-        H
+       Minerva
       </Text>
       <HSeparator mb="20px" />
     </Flex>
