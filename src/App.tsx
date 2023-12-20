@@ -3,7 +3,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import {} from 'react-router-dom';
 import AuthLayout from './layouts/auth';
 import AdminLayout from './layouts/admin';
-import RTLLayout from './layouts/rtl';
 import {
   ChakraProvider,
   // extendTheme
@@ -18,10 +17,6 @@ export default function Main() {
     JSON.parse(localStorage.getItem("userLoginStatus"))
   );
 
-  
-
-  
-
   // eslint-disable-next-line
   const [currentTheme, setCurrentTheme] = useState(initialTheme);
   return (
@@ -29,18 +24,7 @@ export default function Main() {
       <div>
         <Routes>
           <Route path="auth/*" element={<AuthLayout />} />
-          <Route
-            path="admin/*"
-            element={
-              <AdminLayout theme={currentTheme} setTheme={setCurrentTheme} />
-            }
-          />
-          <Route
-            path="rtl/*"
-            element={
-              <RTLLayout theme={currentTheme} setTheme={setCurrentTheme} />
-            }
-          />
+          <Route path="admin/*" element={ <AdminLayout theme={currentTheme} setTheme={setCurrentTheme} /> } />
           <Route path="/" element={<Navigate to="/auth" replace />} />
         </Routes>
       </div>

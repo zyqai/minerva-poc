@@ -15,6 +15,7 @@ declare global {
 		layout?: string;
 		component?: JSX.Element;
 		collapse?: boolean;
+		isActive?: boolean;
 		items?: {
 			// required props
 			name: string;

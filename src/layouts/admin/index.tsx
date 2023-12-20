@@ -23,6 +23,19 @@ export default function Dashboard(props: { [x: string]: any }) {
   const [userLoggedIn, setUserLoggedIn] = useState(
     JSON.parse(localStorage.getItem("userLoginStatus"))
   );
+
+
+  const getActiveRoutes = () => {
+    let activeRoutes: RoutesType[] = [];
+    if (routes) {
+      for (let link = 0; link < routes.length; link++) {
+        if(routes[link].isActive)
+          activeRoutes.push(routes[link]);
+      }
+    } 
+
+    return activeRoutes;
+  }
    
   
   if(!userLoggedIn || !(userLoggedIn?.isUserLoggedIn) ) {
@@ -105,7 +118,7 @@ export default function Dashboard(props: { [x: string]: any }) {
           hovered={hovered}
           setHovered={setHovered}
           mini={mini}
-          routes={routes}
+          routes={getActiveRoutes()}
           display="none"
           {...rest}
         />
@@ -165,7 +178,7 @@ export default function Dashboard(props: { [x: string]: any }) {
                 {getRoutes(routes)}
                 <Route
                   path="/"
-                  element={<Navigate to="/admin/dashboards/default" replace />}
+                  element={<Navigate to="/admin/dashboards/files" replace />}
                 />
               </Routes>
             </Box>

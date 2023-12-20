@@ -69,12 +69,7 @@ export default function AuthNavbar(props: {
       (route) => route.items && route.name === routeName,
     );
     // let foundLinks: { name: string; layout?: string; path: string; component?: () => JSX.Element }[];
-    let foundLinks: {
-      name: string;
-      layout?: string;
-      path: string;
-      component?: JSX.Element;
-    }[] = [];
+    let foundLinks: RoutesType[] = [];
     if (foundRoute[0].items) {
       for (let link = 0; link < foundRoute[0].items.length; link++) {
         foundLinks.push(foundRoute[0].items[link]);

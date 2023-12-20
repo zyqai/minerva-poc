@@ -14,7 +14,7 @@
 
 ## [1.2.0] 2022-11-18
 ### Chat Messages page added
-- 🟢 New page added - Chat Messages" page added - see it live here: https://horizon-ui.com/chakra-pro/#/admin/main/others/messages
+- 🟢 New page added - Chat Messages" page added - see it live here: Minerva UI
 
 ## [1.1.1] 2022-11-01
 ### 🚀 Feature:
@@ -22,7 +22,7 @@
 
 ## [1.1.0] 2022-09-28
 ### React Tables V8
-Now Horizon UI Typescript comes in V8 version for React Tables!
+Now Minerva UI Typescript comes in V8 version for React Tables!
 
 ## [1.0.1] 2022-09-7
 ### Bug Fixing 
