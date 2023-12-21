@@ -174,11 +174,12 @@ export default function Dashboard(props: { [x: string]: any }) {
               minH="100vh"
               pt="50px"
             >
+              <div style={{marginBottom: "70px"}}></div>
               <Routes>
                 {getRoutes(routes)}
                 <Route
                   path="/"
-                  element={<Navigate to="/admin/dashboards/files" replace />}
+                  element={<Navigate to="/admin/projects" replace />}
                 />
               </Routes>
             </Box>

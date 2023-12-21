@@ -7,23 +7,18 @@ import {
   MdPeople,
   MdSettingsApplications,
 } from 'react-icons/md';
+import BusinessesPage from 'views/admin/businesses';
+import LendersPage from 'views/admin/lenders';
+import AccountsPage from 'views/admin/people';
+import PeoplePage from 'views/admin/people';
 
 // Admin Imports
-import DashboardsDefault from 'views/admin/dashboards/default';
+import Project from 'views/admin/projects';
 
 import SignInCentered from 'views/auth/signIn/SignInCentered';
 
 const routes: RoutesType[] = [
-  // --- Dashboards ---
-  {
-    name: 'Dashboards',
-    path: '/dashboards/default',
-    layout: '/admin',
-    icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
-    collapse: false,
-    isActive: true,
-    
-  },
+  
   // --- Authentication ---
   {
     name: 'Authentication',
@@ -36,13 +31,13 @@ const routes: RoutesType[] = [
   },
 
   {
-    name: 'Files',
+    name: 'Project',
     layout: '/admin',
-    path: '/dashboards/files',
+    path: '/projects',
     isActive: true,
     icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
     collapse: false,
-    component: <DashboardsDefault />,
+    component: <Project />,
   },
 
   {
@@ -52,6 +47,7 @@ const routes: RoutesType[] = [
     isActive: true,
     icon: <Icon as={MdPeople} width="20px" height="20px" color="inherit" />,
     collapse: false,
+    component: <PeoplePage />,
   },
   {
     name: 'Businesses',
@@ -60,6 +56,7 @@ const routes: RoutesType[] = [
     isActive: true,
     icon: <Icon as={MdBusiness} width="20px" height="20px" color="inherit" />,
     collapse: false,
+    component: <BusinessesPage />,
   },
   {
     name: 'Lenders',
@@ -68,6 +65,7 @@ const routes: RoutesType[] = [
     isActive: true,
     icon: <Icon as={MdOutlineWarehouse} width="20px" height="20px" color="inherit" />,
     collapse: false,
+    component: <LendersPage />,
   },
   {
     name: 'Account',
@@ -76,6 +74,7 @@ const routes: RoutesType[] = [
     isActive: true,
     icon: <Icon as={MdSettingsApplications} width="20px" height="20px" color="inherit" />,
     collapse: false,
+    component: <AccountsPage />,
   },
 ];
 
