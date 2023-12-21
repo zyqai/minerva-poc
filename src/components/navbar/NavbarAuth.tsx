@@ -19,7 +19,6 @@ import {
 } from '@chakra-ui/react';
 
 // Custom components
-import { HorizonLogo } from 'components/icons/Icons';
 import { SidebarResponsive } from 'components/sidebar/Sidebar';
 import { SidebarContext } from 'contexts/SidebarContext';
 
@@ -111,7 +110,6 @@ export default function AuthNavbar(props: {
         alignItems="center"
         justify="center"
       >
-        <HorizonLogo h="26px" w="175px" color={logoColor} />
       </Stack>
       <Text fontSize="sm" mt="3px">
         {logoText}
@@ -131,7 +129,6 @@ export default function AuthNavbar(props: {
         alignItems="center"
         color={mainText}
       >
-        <HorizonLogo h="26px" w="175px" my="32px" color={logoColor} />
       </Link>
     );
   }

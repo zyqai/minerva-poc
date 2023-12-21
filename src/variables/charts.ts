@@ -1720,7 +1720,6 @@ export const barChartOptionsSmartHome = {
 	}
 };
 
-// Total Spent Horizon Free
 
 export const lineChartDataTotalSpent = [
 	{
