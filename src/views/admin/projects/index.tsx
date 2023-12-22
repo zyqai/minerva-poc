@@ -13,7 +13,7 @@ export default function ProjectsPage() {
   const paleGray = useColorModeValue('#DFE6F6', 'whiteAlpha.100');
   return (
     <div>
-      <ProjectListTable tableData={tableDataComplex} />
+      <ProjectListTable  tableData={tableDataComplex} />
       </div>
 
   );

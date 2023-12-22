@@ -1,4 +1,5 @@
 import './assets/css/App.css';
+import './assets/css/layout.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import {} from 'react-router-dom';
 import AuthLayout from './layouts/auth';

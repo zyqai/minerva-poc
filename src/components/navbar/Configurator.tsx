@@ -386,6 +386,9 @@ export default function HeaderLinks(props: { [x: string]: any }) {
         ...theme.colors,
         background: {
           100: '#FFFFFF',
+          600: '#FEFEFE',
+          700: '#FEFEOO',
+          800: '#FFEEOO',
           900: '#0b1437',
         },
       },
@@ -603,7 +606,7 @@ export default function HeaderLinks(props: { [x: string]: any }) {
                   fontSize="md"
                   fontWeight="500"
                 >
-                  Horizon UI PRO TS
+                  Minerva Pro Color
                   <Badge
                     display="flex"
                     colorScheme="horizonPurple"

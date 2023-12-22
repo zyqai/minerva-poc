@@ -19,11 +19,17 @@ import {
 } from '@tanstack/react-table';
 import Progress from 'components/progress';
 import Card from './Card';
+import { background, Box, useColorModeValue } from '@chakra-ui/react';
 
 // import FileInformation from './FileInformation';
 // import FileDetailsView from '../data-tables/FileDetailsView';
 
 function ProjectListTable(props: { tableData: any }) {
+
+  const textColor = useColorModeValue('secondaryGray.900', 'white');
+	const brandColor = useColorModeValue('brand.500', 'white');
+  const bg = useColorModeValue('background.100', 'background.900');
+  const bgActive = useColorModeValue('background.800', 'background.900');
   const { tableData } = props;
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
@@ -51,7 +57,7 @@ function ProjectListTable(props: { tableData: any }) {
         </p>
       ),
       cell: (info) => (
-        <p className="text-sm font-bold text-navy-700 dark:text-white cursor-pointer hover:text-gray-600"  
+        <p color={activeColor} className="text-sm font-bold  dark:text-white cursor-pointer hover:text-gray-600"  
             onClick={() => {
               onFileViewClick(info.getValue(), true);
             }}
@@ -67,7 +73,7 @@ function ProjectListTable(props: { tableData: any }) {
         <p className="text-sm font-bold text-gray-600 dark:text-white">NAME</p>
       ),
       cell: (info) => (
-        <p className="text-sm font-bold text-navy-700 dark:text-white">
+        <p  color={activeColor} className="text-sm font-bold dark:text-white">
           {info.getValue()}
         </p>
       ),
@@ -78,7 +84,7 @@ function ProjectListTable(props: { tableData: any }) {
         <p className="text-sm font-bold text-gray-600 dark:text-white">File Owner</p>
       ),
       cell: (info) => (
-        <p className="text-sm font-bold text-navy-700 dark:text-white">
+        <p  color={activeColor} className="text-sm font-bold dark:text-white">
           {info.getValue()}
         </p>
       ),
@@ -91,7 +97,7 @@ function ProjectListTable(props: { tableData: any }) {
         <p className="text-sm font-bold text-gray-600 dark:text-white">Loan Amount</p>
       ),
       cell: (info) => (
-        <p className="text-sm font-bold text-navy-700 dark:text-white">
+        <p  color={activeColor} className="text-sm font-bold dark:text-white">
           ${info.getValue()}
         </p>
       ),
@@ -102,7 +108,7 @@ function ProjectListTable(props: { tableData: any }) {
         <p className="text-sm font-bold text-gray-600 dark:text-white">Lender</p>
       ),
       cell: (info) => (
-        <p className="text-sm font-bold text-navy-700 dark:text-white">
+        <p  color={activeColor} className="text-sm font-bold dark:text-white">
           {info.getValue()}
         </p>
       ),
@@ -113,7 +119,7 @@ function ProjectListTable(props: { tableData: any }) {
         <p className="text-sm font-bold text-gray-600 dark:text-white">Phase</p>
       ),
       cell: (info) => (
-        <p className="text-sm font-bold text-navy-700 dark:text-white">
+        <p  color={activeColor} className="text-sm font-bold dark:text-white">
           {info.getValue()}
         </p>
       ),
@@ -127,7 +133,7 @@ function ProjectListTable(props: { tableData: any }) {
       ),
       cell: (info) => (
         <div className="flex items-center">
-          <Progress width="w-[108px]" value={info.getValue()} />
+          <Progress color="blue" width="w-[108px]" value={info.getValue()} />
         </div>
       ),
     }),
@@ -164,7 +170,11 @@ function ProjectListTable(props: { tableData: any }) {
       pageIndex: 0,
       pageSize: 6,
     });
-
+  let activeColor = useColorModeValue('gray.700', 'white');
+  let inactiveColor = useColorModeValue(
+      'secondaryGray.600',
+      'secondaryGray.600',
+    );
   const changeTableView = (setView: boolean) => { 
     setTableView(setView);
   };
@@ -218,9 +228,9 @@ function ProjectListTable(props: { tableData: any }) {
   });
 
   return (
-    <div>
+    <Box bg={bg}>
     !fileDetailsView ? 
-          <Card extra={'w-full h-full pb-5 sm:overflow-auto px-6'}>
+          <Card  bg={bg} extra={'w-full h-full pb-5 sm:overflow-auto px-6'} >
 
             {/* View Header Start */}
             <div className="flex justify-between max-w-full items-center rounded-xl pt-[20px]">
@@ -235,10 +245,10 @@ function ProjectListTable(props: { tableData: any }) {
                 />
               </div>
               <div className="flex  h-[38px] w-[400px] flex h-20 items-center justify-end px-6">
-                <div className="flex border-2 justify-end dark:bg-white-20 linear rounded-[20px] bg-lightPrimary text-base font-medium text-brand-500 transition duration-200  dark:bg-white/5 dark:text-white ">
-                  <div className={"linear flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-brand-300 " + (tableView? "bg-brand-600 text-white ":"") } onClick={() => {changeTableView(true)}}>TableView</div>
-                  <div className={"linear flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-brand-300 " + (tableView? "":"bg-brand-600 text-white") } onClick={() => {changeTableView(false)}}>ListView</div>
-                </div>
+                <Box  bg = {bg} className="flex border-2 justify-end linear rounded-[20px] bg-lightPrimary text-base font-medium text-brand-500 transition duration-200  ">
+                  <Box  color={activeColor} bg = {tableView? bg: bgActive} className={"linear flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-brand-300 " + (tableView? "bg-brand-600 text-white ":"") } onClick={() => {changeTableView(true)}}>TableView</Box>
+                  <Box  color={activeColor} bg = {tableView? bg: bgActive} className={"linear flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-brand-300 " } onClick={() => {changeTableView(false)}}>ListView</Box>
+                </Box>
               </div>
             </div>
             {/* View Header End */}
@@ -246,7 +256,7 @@ function ProjectListTable(props: { tableData: any }) {
             {tableView? <GetTableView />: <GetListsHeader /> }
           </Card> : ""
            {/* <FileDetailsView file = {selectedFile} onFileDetailsViewChange = {setFileDetailsView} /> */}
-          </div>
+          </Box>
   );
 
 
@@ -348,22 +358,23 @@ function ProjectListTable(props: { tableData: any }) {
           </div>
           {/* right side */}
           <div className="flex items-center gap-2">
-            <button
+            <button  color={activeColor}
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
-              className={`linear flex h-10 w-10 items-center justify-center rounded-full bg-brand-500 p-2 text-lg text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200`}
+              className={`bg-blue-500 linear flex h-10 w-10 items-center justify-center rounded-full bg-brand-500 p-2 text-lg transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200`}
             >
               <MdChevronLeft />
             </button>
 
             {createPages(table.getPageCount()).map((pageNumber, index) => {
               return (
-                <button
+                <button  color={activeColor}
                   className={`linear flex h-10 w-10 items-center justify-center rounded-full p-2 text-sm transition duration-200 ${
                     pageNumber === pageIndex + 1
-                      ? 'bg-brand-500 text-white hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200'
+                      ? 'bg-blue-500 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200'
                       : 'border-[1px] border-gray-400 bg-[transparent] dark:border-white dark:text-white'
                   }`}
+                  
                   onClick={() => table.setPageIndex(pageNumber - 1)}
                   key={index}
                 >
@@ -371,10 +382,10 @@ function ProjectListTable(props: { tableData: any }) {
                 </button>
               );
             })}
-            <button
+            <button color={activeColor}
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
-              className={`linear flex h-10 w-10 items-center justify-center rounded-full bg-brand-500 p-2 text-lg text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 `}
+              className={`bg-blue-500 linear flex h-10 w-10 items-center justify-center rounded-full bg-brand-500 p-2 text-lg transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 `}
             >
               <MdChevronRight />
             </button>
