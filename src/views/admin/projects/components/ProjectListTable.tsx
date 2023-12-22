@@ -21,6 +21,7 @@ import Progress from 'components/progress';
 import Card from './Card';
 import { background, Box, useColorModeValue } from '@chakra-ui/react';
 import FileInformation from './FileInformation';
+import FileDetailsView from './FileDetailsView';
 
 // import FileInformation from './FileInformation';
 // import FileDetailsView from '../data-tables/FileDetailsView';
@@ -230,7 +231,7 @@ function ProjectListTable(props: { tableData: any }) {
 
   return (
     <Box bg={bg}>
-    !fileDetailsView ? 
+    {!fileDetailsView ? 
           <Card  bg={bg} extra={'w-full h-full pb-5 sm:overflow-auto px-6'} >
 
             {/* View Header Start */}
@@ -255,8 +256,8 @@ function ProjectListTable(props: { tableData: any }) {
             {/* View Header End */}
 
             {tableView? <GetTableView />: <GetListsHeader /> }
-          </Card> : ""
-           {/* <FileDetailsView file = {selectedFile} onFileDetailsViewChange = {setFileDetailsView} /> */}
+          </Card> : <FileDetailsView file = {selectedFile} onFileDetailsViewChange = {setFileDetailsView} />}
+            
           </Box>
   );
 
