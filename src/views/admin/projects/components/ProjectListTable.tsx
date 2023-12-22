@@ -246,11 +246,15 @@ function ProjectListTable(props: { tableData: any }) {
                   className="block w-full rounded-full bg-lightPrimary text-base text-navy-700 outline-none dark:!bg-navy-900 dark:text-white"
                 />
               </div>
+              
               <div className="flex  h-[38px] w-[400px] flex h-20 items-center justify-end px-6">
                 <Box  bg = {bg} className="flex border-2 justify-end linear rounded-[20px] bg-lightPrimary text-base font-medium text-brand-500 transition duration-200  ">
                   <Box  className={"linear flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-blue-500 " + (tableView? "bg-blue-500 text-white":"") } onClick={() => {changeTableView(true)}}>TableView</Box>
                   <Box  className={"linear flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-blue-500 " + (!tableView? "bg-blue-500 text-white":"") } onClick={() => {changeTableView(false)}}>ListView</Box>
                 </Box>
+              </div>
+              <div className="flex  h-[38px] w-[400px] flex h-20 items-center justify-end px-6">
+                <Box  className={"linear flex p-3 cursor-pointer border-1 justify-around border border-gray-200 transition shadow-3xl shadow-shadow-100 rounded-[20px] hover:bg-blue-500 "  } onClick={() => {changeTableView(true)}}>Start Project</Box>
               </div>
             </div>
             {/* View Header End */}
