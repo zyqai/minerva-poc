@@ -20,6 +20,7 @@ import {
 import Progress from 'components/progress';
 import Card from './Card';
 import { background, Box, useColorModeValue } from '@chakra-ui/react';
+import FileInformation from './FileInformation';
 
 // import FileInformation from './FileInformation';
 // import FileDetailsView from '../data-tables/FileDetailsView';
@@ -246,8 +247,8 @@ function ProjectListTable(props: { tableData: any }) {
               </div>
               <div className="flex  h-[38px] w-[400px] flex h-20 items-center justify-end px-6">
                 <Box  bg = {bg} className="flex border-2 justify-end linear rounded-[20px] bg-lightPrimary text-base font-medium text-brand-500 transition duration-200  ">
-                  <Box  color={activeColor} bg = {tableView? bg: bgActive} className={"linear flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-brand-300 " + (tableView? "bg-brand-600 text-white ":"") } onClick={() => {changeTableView(true)}}>TableView</Box>
-                  <Box  color={activeColor} bg = {tableView? bg: bgActive} className={"linear flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-brand-300 " } onClick={() => {changeTableView(false)}}>ListView</Box>
+                  <Box  className={"linear flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-blue-500 " + (tableView? "bg-blue-500 text-white":"") } onClick={() => {changeTableView(true)}}>TableView</Box>
+                  <Box  className={"linear flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-blue-500 " + (!tableView? "bg-blue-500 text-white":"") } onClick={() => {changeTableView(false)}}>ListView</Box>
                 </Box>
               </div>
             </div>
@@ -270,7 +271,7 @@ function ProjectListTable(props: { tableData: any }) {
                                 onFileViewClick(file.fileId, true);
                               }}
                           >
-                            {/* <FileInformation file={file} /> */}
+                            <FileInformation file={file} />
                           </div>
                           : ""
         })}
