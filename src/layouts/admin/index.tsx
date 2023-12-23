@@ -155,7 +155,7 @@ export default function Dashboard(props: { [x: string]: any }) {
                 setMini={setMini}
                 mini={mini}
                 onOpen={onOpen}
-                logoText={'Horizon UI Dashboard PRO'}
+                logoText={'Minerva UI Dashboard PRO'}
                 brandText={getActiveRoute(routes)}
                 secondary={getActiveNavbar(routes)}
                 theme={props.theme}

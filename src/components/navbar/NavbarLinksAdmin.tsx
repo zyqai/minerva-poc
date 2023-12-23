@@ -166,7 +166,7 @@ export default function HeaderLinks(props: {
               borderRadius="8px"
               mb="10px"
             >
-              <ItemContent info="Horizon UI Dashboard PRO" />
+              <ItemContent info="Minerva UI Dashboard PRO" />
             </MenuItem>
             <MenuItem
               _hover={{ bg: 'none' }}
@@ -175,7 +175,7 @@ export default function HeaderLinks(props: {
               borderRadius="8px"
               mb="10px"
             >
-              <ItemContent info="Horizon Design System Free" />
+              <ItemContent info="Minerva Design System Free" />
             </MenuItem>
           </Flex>
         </MenuList>
@@ -204,42 +204,7 @@ export default function HeaderLinks(props: {
           maxW={{ base: '360px', md: 'unset' }}
         >
           <Image src={navImage} borderRadius="16px" mb="28px" />
-          <Flex flexDirection="column">
-            <Link w="100%" href="https://horizon-ui.com/pro">
-              <Button w="100%" h="44px" mb="10px" variant="brand">
-                Buy Horizon UI PRO
-              </Button>
-            </Link>
-            <Link
-              w="100%"
-              href="https://horizon-ui.com/documentation/docs/introduction"
-            >
-              <Button
-                w="100%"
-                h="44px"
-                mb="10px"
-                border="1px solid"
-                bg="transparent"
-                borderColor={borderButton}
-              >
-                See Documentation
-              </Button>
-            </Link>
-            <Link
-              w="100%"
-              href="https://github.com/horizon-ui/horizon-ui-chakra-ts"
-            >
-              <Button
-                w="100%"
-                h="44px"
-                variant="no-hover"
-                color={textColor}
-                bg="transparent"
-              >
-                Try Horizon Free
-              </Button>
-            </Link>
-          </Flex>
+          
         </MenuList>
       </Menu>
       <Configurator
