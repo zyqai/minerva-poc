@@ -9,7 +9,7 @@ import {
 } from 'react-icons/md';
 import BusinessesPage from 'views/admin/businesses';
 import LendersPage from 'views/admin/lenders';
-import AccountsPage from 'views/admin/people';
+import AccountsPage from 'views/admin/accounts';
 import PeoplePage from 'views/admin/people';
 import AddProject from 'views/admin/projects/AddProject';
 

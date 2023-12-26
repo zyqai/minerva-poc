@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { MdChevronRight, MdChevronLeft, MdCheckCircle, MdCancel, MdOutlineError } from 'react-icons/md';
-import { File, People } from 'types/project-types';
+import { MdChevronRight, MdChevronLeft } from 'react-icons/md';
+import { People } from 'types/project-types';
 
 import {
   PaginationState,
@@ -17,27 +17,23 @@ import {
   getSortedRowModel,
   flexRender,
 } from '@tanstack/react-table';
-import { background, Box, useColorModeValue } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SearchIcon from 'components/icons/SearchIcon';
 import Card from 'components/card/Card';
-
 
 function PeopleListTable(props: { tableData: any }) {
   const navigate = useNavigate();
 
-  const textColor = useColorModeValue('secondaryGray.900', 'white');
-	const brandColor = useColorModeValue('brand.500', 'white');
   const bg = useColorModeValue('background.100', 'background.900');
-  const bgActive = useColorModeValue('background.800', 'background.900');
   const { tableData } = props;
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
   );
   let defaultData = tableData;
-  const [tableView, setTableView] = React.useState(true);
-  const [fileDetailsView, setFileDetailsView] = React.useState(false);
+  // const [tableView, setTableView] = React.useState(true);
+  // const [fileDetailsView, setFileDetailsView] = React.useState(false);
   const [listViewCount, setListViewCount] = React.useState(6);
   const [globalFilter, setGlobalFilter] = React.useState('');
   const createPages = (count: number) => {
@@ -58,23 +54,27 @@ function PeopleListTable(props: { tableData: any }) {
         </p>
       ),
       cell: (info) => (
-        <p color={activeColor} className="text-sm font-bold  dark:text-white cursor-pointer hover:text-gray-600"  
-            onClick={() => {
-              onFileViewClick(info.getValue(), true);
-            }}
+        <p
+          color={activeColor}
+          className="text-sm font-bold  dark:text-white cursor-pointer hover:text-gray-600"
+          onClick={() => {
+            onPeopleClick(info.getValue(), true);
+          }}
         >
-         {/* <NavLink href={"./files/" + (info.getValue())} className="mt-0 w-max lg:pt-10">{info.getValue()} </NavLink> */}
-         {info.getValue()}
+          {/* <NavLink href={"./files/" + (info.getValue())} className="mt-0 w-max lg:pt-10">{info.getValue()} </NavLink> */}
+          {info.getValue()}
         </p>
       ),
     }),
     columnHelper.accessor('lastName', {
       id: 'name',
       header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">Last Name</p>
+        <p className="text-sm font-bold text-gray-600 dark:text-white">
+          Last Name
+        </p>
       ),
       cell: (info) => (
-        <p  color={activeColor} className="text-sm font-bold dark:text-white">
+        <p color={activeColor} className="text-sm font-bold dark:text-white">
           {info.getValue()}
         </p>
       ),
@@ -85,7 +85,7 @@ function PeopleListTable(props: { tableData: any }) {
         <p className="text-sm font-bold text-gray-600 dark:text-white">Email</p>
       ),
       cell: (info) => (
-        <p  color={activeColor} className="text-sm font-bold dark:text-white">
+        <p color={activeColor} className="text-sm font-bold dark:text-white">
           {info.getValue()}
         </p>
       ),
@@ -96,7 +96,7 @@ function PeopleListTable(props: { tableData: any }) {
         <p className="text-sm font-bold text-gray-600 dark:text-white">Phone</p>
       ),
       cell: (info) => (
-        <p  color={activeColor} className="text-sm font-bold dark:text-white">
+        <p color={activeColor} className="text-sm font-bold dark:text-white">
           {info.getValue()}
         </p>
       ),
@@ -104,44 +104,41 @@ function PeopleListTable(props: { tableData: any }) {
     columnHelper.accessor('activeFile', {
       id: 'activeFile',
       header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">Active File</p>
+        <p className="text-sm font-bold text-gray-600 dark:text-white">
+          Active File
+        </p>
       ),
       cell: (info) => (
-        <p  color={activeColor} className="text-sm font-bold dark:text-white">
-          {info.getValue()? "Yes":"No"}
+        <p color={activeColor} className="text-sm font-bold dark:text-white">
+          {info.getValue() ? 'Yes' : 'No'}
         </p>
       ),
     }),
   ]; // eslint-disable-next-line
-  
+
   const [data, setData] = React.useState(() => [...defaultData]);
-  const [listFilterData, setListFilterData] = React.useState(() => [...defaultData]);
-  const [fileId, setFileId] = React.useState(1);
-  const [selectedFile, setSelectedFile] = React.useState(null);
-  const [{ pageIndex, pageSize }, setPagination] =
-    React.useState<PaginationState>({
-      pageIndex: 0,
-      pageSize: 6,
-    });
+  const [listFilterData, setListFilterData] = React.useState(() => [
+    ...defaultData,
+  ]);
+  const [peopleId, setPeopleId] = React.useState(1);
+  const [selectedPeople, setSelectedPeople] = React.useState(null);
+  const [{ pageIndex, pageSize }, setPagination] = React.useState<
+    PaginationState
+  >({
+    pageIndex: 0,
+    pageSize: 6,
+  });
   let activeColor = useColorModeValue('gray.700', 'white');
-  let inactiveColor = useColorModeValue(
-      'secondaryGray.600',
-      'secondaryGray.600',
-    );
-  const changeTableView = (setView: boolean) => { 
-    setTableView(setView);
+
+  const addNewProjectClick = () => {
+    navigate('/admin/dashboards/AddProject');
   };
 
-  const addNewProjectClick = () => { 
-    navigate("/admin/dashboards/AddProject");
+  const onPeopleClick = (peopleId: any, flag: any) => {
+    let selectedPeople = data.find((people) => people.peopleId === peopleId);
+    selectedPeople(selectedPeople);
+    setPeopleId(selectedPeople);
   };
-
-  const onFileViewClick = (fileId: any, flag: any) => {
-    let selectedFile = data.find(file => file.fileId === fileId);
-    setSelectedFile(selectedFile);
-    setFileId(fileId);
-    setFileDetailsView(flag);
-  }
 
   const onChangeSearchFilter = (e: any) => {
     setGlobalFilter(e.target.value);
@@ -151,7 +148,7 @@ function PeopleListTable(props: { tableData: any }) {
       filterData.push(row.original);
     });
     setListFilterData(filterData);
-  }
+  };
 
   const pagination = React.useMemo(
     () => ({
@@ -185,66 +182,48 @@ function PeopleListTable(props: { tableData: any }) {
 
   return (
     <Box bg={bg}>
-        
-          <Card  bg={bg} extra={'w-full h-full pb-5 sm:overflow-auto px-6'} >
-
-            {/* View Header Start */}
-            <div className="flex justify-between max-w-full items-center rounded-xl pt-[20px]">
-              <div className="flex h-[38px] w-[400px] flex-grow items-center rounded-xl bg-lightPrimary text-sm text-gray-600 dark:!bg-navy-900 dark:text-white">
-                <SearchIcon />
-                <input
-                  value={globalFilter ?? ''}
-                  onChange={(e: any) => onChangeSearchFilter(e)}
-                  type="text"
-                  placeholder="Search...."
-                  className="block w-full rounded-full bg-lightPrimary text-base text-navy-700 outline-none dark:!bg-navy-900 dark:text-white"
-                />
-              </div>
-              <div className="flex  h-[38px] w-[400px] flex h-20 items-center justify-end px-6">
-              
-              </div>
-              <div className="flex  h-[38px] w-[400px] flex h-20 items-center justify-end px-6">
-                <Box mr="8px" className={"linear flex p-1 cursor-pointer border-1 justify-around border border-gray-200 transition shadow-3xl px-10 shadow-shadow-100 hover:bg-blue-500 "  } onClick={() => {addNewProjectClick()}}>Import</Box>
-                <Box  className={"linear flex p-1 cursor-pointer border-1 justify-around border border-gray-200 transition shadow-3xl px-10 shadow-shadow-100 hover:bg-blue-500 "  } onClick={() => {addNewProjectClick()}}>Add Person</Box>
-              </div>
-            </div>
-            <GetTableView />
-          </Card> 
+      <Card bg={bg} extra={'w-full h-full pb-5 sm:overflow-auto px-6'}>
+        {/* View Header Start */}
+        <div className="flex justify-between max-w-full items-center rounded-xl pt-[20px]">
+          <div className="flex h-[38px] w-[400px] flex-grow items-center rounded-xl bg-lightPrimary text-sm text-gray-600 dark:!bg-navy-900 dark:text-white">
+            <SearchIcon />
+            <input
+              value={globalFilter ?? ''}
+              onChange={(e: any) => onChangeSearchFilter(e)}
+              type="text"
+              placeholder="Search...."
+              className="block w-full rounded-full bg-lightPrimary text-base text-navy-700 outline-none dark:!bg-navy-900 dark:text-white"
+            />
+          </div>
+          <div className="flex  h-[38px] w-[400px] flex h-20 items-center justify-end px-6"></div>
+          <div className="flex  h-[38px] w-[400px] flex h-20 items-center justify-end px-6">
+            <Box
+              mr="8px"
+              className={
+                'linear flex p-1 cursor-pointer border-1 justify-around border border-gray-200 transition shadow-3xl px-10 shadow-shadow-100 hover:bg-blue-500 '
+              }
+              onClick={() => {
+                addNewProjectClick();
+              }}
+            >
+              Import
+            </Box>
+            <Box
+              className={
+                'linear flex p-1 cursor-pointer border-1 justify-around border border-gray-200 transition shadow-3xl px-10 shadow-shadow-100 hover:bg-blue-500 '
+              }
+              onClick={() => {
+                addNewProjectClick();
+              }}
+            >
+              Add Person
+            </Box>
+          </div>
+        </div>
+        <GetTableView />
+      </Card>
     </Box>
   );
-
-
-  function GetListsHeader(props: any) {
-    return (
-      <div><div className="block mb-5 mt-8">
-         {listFilterData.map((file,index)=>{
-            return index < listViewCount ? 
-                          <div className="cursor-pointer h-[400px] w-[400px] mr-4" style={{"float": "left"}}
-                              onClick={() => {
-                                onFileViewClick(file.fileId, true);
-                              }}
-                          >
-                            {/* <FileInformation file={file} /> */}
-                          </div>
-                          : ""
-        })}
-      </div>
-      <div className="mt-6 mb-6 w-full" style={{"display": "inline-block"}}>
-        {
-          listFilterData.length >= listViewCount? 
-              <div className={"linear w-[300px] !m-auto flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-brand-300 " + (tableView? "":"bg-brand-600 text-white") }
-                  onClick={() => {
-                    setListViewCount(listViewCount+6);
-                  }}>View More Projects</div> 
-                : ""
-        }
-        
-      </div>
-      </div>
-    );
-    
-  }
-
 
   function GetTableView(props: any) {
     return (
@@ -312,7 +291,8 @@ function PeopleListTable(props: { tableData: any }) {
           </div>
           {/* right side */}
           <div className="flex items-center gap-2">
-            <button  color={activeColor}
+            <button
+              color={activeColor}
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
               className={`bg-blue-500 linear flex h-10 w-10 items-center justify-center rounded-full bg-brand-500 p-2 text-lg transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200`}
@@ -322,13 +302,13 @@ function PeopleListTable(props: { tableData: any }) {
 
             {createPages(table.getPageCount()).map((pageNumber, index) => {
               return (
-                <button  color={activeColor}
+                <button
+                  color={activeColor}
                   className={`linear flex h-10 w-10 items-center justify-center rounded-full p-2 text-sm transition duration-200 ${
                     pageNumber === pageIndex + 1
                       ? 'bg-blue-500 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200'
                       : 'border-[1px] border-gray-400 bg-[transparent] dark:border-white dark:text-white'
                   }`}
-                  
                   onClick={() => table.setPageIndex(pageNumber - 1)}
                   key={index}
                 >
@@ -336,7 +316,8 @@ function PeopleListTable(props: { tableData: any }) {
                 </button>
               );
             })}
-            <button color={activeColor}
+            <button
+              color={activeColor}
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
               className={`bg-blue-500 linear flex h-10 w-10 items-center justify-center rounded-full bg-brand-500 p-2 text-lg transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 `}
@@ -346,7 +327,7 @@ function PeopleListTable(props: { tableData: any }) {
           </div>
         </div>
       </div>
-      );
+    );
   }
 }
 

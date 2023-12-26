@@ -8,7 +8,7 @@ import peopleDataComplex from 'variables/peopleDataComplex';
 
 // Custom components
 
-export default function AccountsPage() {
+export default function PeoplePage() {
   // Chakra Color Mode
   const paleGray = useColorModeValue('#DFE6F6', 'whiteAlpha.100');
   return (
