@@ -14,7 +14,7 @@ export default function ProjectsPage() {
   return (
     <div>
       <ProjectListTable  tableData={tableDataComplex} />
-      </div>
+     </div>
 
   );
 }

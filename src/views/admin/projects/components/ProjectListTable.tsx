@@ -22,11 +22,13 @@ import Card from './Card';
 import { background, Box, useColorModeValue } from '@chakra-ui/react';
 import FileInformation from './FileInformation';
 import FileDetailsView from './FileDetailsView';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 // import FileInformation from './FileInformation';
 // import FileDetailsView from '../data-tables/FileDetailsView';
 
 function ProjectListTable(props: { tableData: any }) {
+  const navigate = useNavigate();
 
   const textColor = useColorModeValue('secondaryGray.900', 'white');
 	const brandColor = useColorModeValue('brand.500', 'white');
@@ -181,6 +183,10 @@ function ProjectListTable(props: { tableData: any }) {
     setTableView(setView);
   };
 
+  const addNewProjectClick = () => { 
+    navigate("/admin/dashboards/AddProject");
+  };
+
   const onFileViewClick = (fileId: any, flag: any) => {
     let selectedFile = data.find(file => file.fileId === fileId);
     
@@ -254,7 +260,7 @@ function ProjectListTable(props: { tableData: any }) {
                 </Box>
               </div>
               <div className="flex  h-[38px] w-[400px] flex h-20 items-center justify-end px-6">
-                <Box  className={"linear flex p-3 cursor-pointer border-1 justify-around border border-gray-200 transition shadow-3xl shadow-shadow-100 rounded-[20px] hover:bg-blue-500 "  } onClick={() => {changeTableView(true)}}>Start Project</Box>
+                <Box  className={"linear flex p-3 cursor-pointer border-1 justify-around border border-gray-200 transition shadow-3xl shadow-shadow-100 rounded-[20px] hover:bg-blue-500 "  } onClick={() => {addNewProjectClick()}}>Start Project</Box>
               </div>
             </div>
             {/* View Header End */}
