@@ -1,41 +1,4 @@
-export interface File {
-  fileId: number;
-  name: string;
-  lender: string;
-  fileOwner: string;
-  loanAmount: number;
-  phase: string;
-  probabilityToFund: number;
-  date: string;
-  progress: number;
-  durationOfProcess?: string;
-  people?: People[];
-  businesses?: Business[];
-  lenders?: Lender[];
-  tags?: string[];
-};
-
-export interface People {
-  firstName: string;
-  lastName: string;
-  email?: string;
-  phone?: string;
-  imageUrl?: string;
-}
-
-export interface Business {
-  name: string;
-  email?: string;
-  phone?: string;
-  imageUrl?: string;
-}
-
-export interface Lender {
-  name: string;
-  email?: string;
-  phone?: string;
-  imageUrl?: string;
-}
+import { File } from "types/project-types";
 
 const tableDataComplex: File[] = [
   {
@@ -51,18 +14,22 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["SBA", "Grand Rapids"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
@@ -89,18 +56,22 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
@@ -122,22 +93,29 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
+    lenders: [{
+      name: "Sample Lender"
+    }]
   },
   {
     fileId: 3344568,
@@ -152,22 +130,29 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
     ],
+    lenders: [{
+      name: "Sample Lender"
+    }],
     businesses: [ {
       name: "Acme Brewing",
     },{
@@ -187,22 +172,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
   {
     fileId: 3344570,
@@ -217,22 +206,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
   {
     fileId: 3344571,
@@ -247,18 +240,22 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
@@ -281,22 +278,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
   {
     fileId: 3344573,
@@ -311,18 +312,22 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
@@ -346,22 +351,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
   {
     fileId: 3344575,
@@ -376,22 +385,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
   {
     fileId: 3344576,
@@ -406,18 +419,22 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
@@ -441,22 +458,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
   {
     fileId: 3344578,
@@ -471,22 +492,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   }, {
     fileId: 3344579,
     name: 'Acme Brewing',
@@ -500,22 +525,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
   {
     fileId: 3344580,
@@ -530,22 +559,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
   {
     fileId: 3344581,
@@ -560,22 +593,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
   {
     fileId: 3344582,
@@ -590,22 +627,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
   {
     fileId: 3344583,
@@ -620,22 +661,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
   {
     fileId: 3344584,
@@ -650,22 +695,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
   {
     fileId: 3344585,
@@ -680,22 +729,26 @@ const tableDataComplex: File[] = [
     durationOfProcess: "4hrs",
     tags: ["CCC", "Raleigh"],
     people: [{
+      peopleId: 12345,
       firstName: "Nichole",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Angie",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Bob",
       lastName: "Rich",
     },
     {
+      peopleId: 12345,
       firstName: "Sam",
       lastName: "Rich",
     },
-    ]
+    ],
   },
 
 ];

@@ -180,7 +180,6 @@ export default function AddProjectsPage() {
       <Divider mt="24px" mb="24px" />
 
       <Grid  ml="8px"  templateRows='repeat(3)' templateColumns='repeat(3, 1fr)' gap={4} >
-      
         <GridItem></GridItem>
         <GridItem colSpan={2}>
           <Box float="right">

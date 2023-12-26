@@ -1,6 +1,7 @@
 import React from 'react';
+
 import { MdChevronRight, MdChevronLeft, MdCheckCircle, MdCancel, MdOutlineError } from 'react-icons/md';
-import { File } from 'types/project-types';
+import { File, People } from 'types/project-types';
 
 import {
   PaginationState,
@@ -16,18 +17,14 @@ import {
   getSortedRowModel,
   flexRender,
 } from '@tanstack/react-table';
-import Progress from 'components/progress';
 import { background, Box, useColorModeValue } from '@chakra-ui/react';
-import FileInformation from './FileInformation';
-import FileDetailsView from './FileDetailsView';
+
 import { Navigate, useNavigate } from 'react-router-dom';
 import SearchIcon from 'components/icons/SearchIcon';
 import Card from 'components/card/Card';
 
-// import FileInformation from './FileInformation';
-// import FileDetailsView from '../data-tables/FileDetailsView';
 
-function ProjectListTable(props: { tableData: any }) {
+function PeopleListTable(props: { tableData: any }) {
   const navigate = useNavigate();
 
   const textColor = useColorModeValue('secondaryGray.900', 'white');
@@ -53,11 +50,11 @@ function ProjectListTable(props: { tableData: any }) {
     return arrPageCount;
   };
   const columns = [
-    columnHelper.accessor('fileId', {
-      id: 'fileId',
+    columnHelper.accessor('firstName', {
+      id: 'lastName',
       header: () => (
         <p className="text-sm font-bold text-gray-600 dark:text-white">
-          File Id#
+          First Name#
         </p>
       ),
       cell: (info) => (
@@ -71,10 +68,10 @@ function ProjectListTable(props: { tableData: any }) {
         </p>
       ),
     }),
-    columnHelper.accessor('name', {
+    columnHelper.accessor('lastName', {
       id: 'name',
       header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">NAME</p>
+        <p className="text-sm font-bold text-gray-600 dark:text-white">Last Name</p>
       ),
       cell: (info) => (
         <p  color={activeColor} className="text-sm font-bold dark:text-white">
@@ -82,10 +79,10 @@ function ProjectListTable(props: { tableData: any }) {
         </p>
       ),
     }),
-    columnHelper.accessor('fileOwner', {
-      id: 'fileOwner',
+    columnHelper.accessor('email', {
+      id: 'email',
       header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">File Owner</p>
+        <p className="text-sm font-bold text-gray-600 dark:text-white">Email</p>
       ),
       cell: (info) => (
         <p  color={activeColor} className="text-sm font-bold dark:text-white">
@@ -93,23 +90,10 @@ function ProjectListTable(props: { tableData: any }) {
         </p>
       ),
     }),
-    
-    
-    columnHelper.accessor('loanAmount', {
-      id: 'loanAmount',
+    columnHelper.accessor('phone', {
+      id: 'phone',
       header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">Loan Amount</p>
-      ),
-      cell: (info) => (
-        <p  color={activeColor} className="text-sm font-bold dark:text-white">
-          ${info.getValue()}
-        </p>
-      ),
-    }),
-    columnHelper.accessor('lender', {
-      id: 'lender',
-      header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">Lender</p>
+        <p className="text-sm font-bold text-gray-600 dark:text-white">Phone</p>
       ),
       cell: (info) => (
         <p  color={activeColor} className="text-sm font-bold dark:text-white">
@@ -117,54 +101,19 @@ function ProjectListTable(props: { tableData: any }) {
         </p>
       ),
     }),
-    columnHelper.accessor('phase', {
-      id: 'phase',
+    columnHelper.accessor('activeFile', {
+      id: 'activeFile',
       header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">Phase</p>
+        <p className="text-sm font-bold text-gray-600 dark:text-white">Active File</p>
       ),
       cell: (info) => (
         <p  color={activeColor} className="text-sm font-bold dark:text-white">
-          {info.getValue()}
+          {info.getValue()? "Yes":"No"}
         </p>
-      ),
-    }),
-    columnHelper.accessor('progress', {
-      id: 'progress',
-      header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">
-          PROGRESS
-        </p>
-      ),
-      cell: (info) => (
-        <div className="flex items-center">
-          <Progress color="blue" width="w-[108px]" value={info.getValue()} />
-        </div>
-      ),
-    }),
-    columnHelper.accessor('probabilityToFund', {
-      id: 'probabilityToFund',
-      header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">
-          Probability to Fund
-        </p>
-      ),
-      cell: (info) => (
-        <div className="flex items-center">
-          {
-          info.getValue()>60 ? (
-            <MdCheckCircle className="me-1 text-green-500 dark:text-green-300" />
-          ) : info.getValue()<30 ?  (
-            <MdCancel className="me-1 text-red-500 dark:text-red-300" />
-          ) : info.getValue()>=0 ?  (
-            <MdOutlineError className="me-1 text-amber-500 dark:text-amber-300" />
-          ) : null}
-          <p className="text-sm font-bold text-navy-700 dark:text-white">
-            {info.getValue()}%
-          </p>
-        </div>
       ),
     }),
   ]; // eslint-disable-next-line
+  
   const [data, setData] = React.useState(() => [...defaultData]);
   const [listFilterData, setListFilterData] = React.useState(() => [...defaultData]);
   const [fileId, setFileId] = React.useState(1);
@@ -189,7 +138,6 @@ function ProjectListTable(props: { tableData: any }) {
 
   const onFileViewClick = (fileId: any, flag: any) => {
     let selectedFile = data.find(file => file.fileId === fileId);
-    
     setSelectedFile(selectedFile);
     setFileId(fileId);
     setFileDetailsView(flag);
@@ -237,7 +185,7 @@ function ProjectListTable(props: { tableData: any }) {
 
   return (
     <Box bg={bg}>
-    {!fileDetailsView ? 
+        
           <Card  bg={bg} extra={'w-full h-full pb-5 sm:overflow-auto px-6'} >
 
             {/* View Header Start */}
@@ -252,23 +200,17 @@ function ProjectListTable(props: { tableData: any }) {
                   className="block w-full rounded-full bg-lightPrimary text-base text-navy-700 outline-none dark:!bg-navy-900 dark:text-white"
                 />
               </div>
-              
               <div className="flex  h-[38px] w-[400px] flex h-20 items-center justify-end px-6">
-                <Box  bg = {bg} className="flex border-2 justify-end linear rounded-[20px] bg-lightPrimary text-base font-medium text-brand-500 transition duration-200  ">
-                  <Box  className={"linear flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-blue-500 " + (tableView? "bg-blue-500 text-white":"") } onClick={() => {changeTableView(true)}}>TableView</Box>
-                  <Box  className={"linear flex p-3 cursor-pointer border-1 justify-around transition rounded-[20px] hover:bg-blue-500 " + (!tableView? "bg-blue-500 text-white":"") } onClick={() => {changeTableView(false)}}>ListView</Box>
-                </Box>
+              
               </div>
               <div className="flex  h-[38px] w-[400px] flex h-20 items-center justify-end px-6">
-                <Box  className={"linear flex p-3 cursor-pointer border-1 justify-around border border-gray-200 transition shadow-3xl shadow-shadow-100 rounded-[20px] hover:bg-blue-500 "  } onClick={() => {addNewProjectClick()}}>Start Project</Box>
+                <Box mr="8px" className={"linear flex p-1 cursor-pointer border-1 justify-around border border-gray-200 transition shadow-3xl px-10 shadow-shadow-100 hover:bg-blue-500 "  } onClick={() => {addNewProjectClick()}}>Import</Box>
+                <Box  className={"linear flex p-1 cursor-pointer border-1 justify-around border border-gray-200 transition shadow-3xl px-10 shadow-shadow-100 hover:bg-blue-500 "  } onClick={() => {addNewProjectClick()}}>Add Person</Box>
               </div>
             </div>
-            {/* View Header End */}
-
-            {tableView? <GetTableView />: <GetListsHeader /> }
-          </Card> : <FileDetailsView file = {selectedFile} onFileDetailsViewChange = {setFileDetailsView} />}
-            
-          </Box>
+            <GetTableView />
+          </Card> 
+    </Box>
   );
 
 
@@ -282,7 +224,7 @@ function ProjectListTable(props: { tableData: any }) {
                                 onFileViewClick(file.fileId, true);
                               }}
                           >
-                            <FileInformation file={file} />
+                            {/* <FileInformation file={file} /> */}
                           </div>
                           : ""
         })}
@@ -408,5 +350,5 @@ function ProjectListTable(props: { tableData: any }) {
   }
 }
 
-export default ProjectListTable;
-const columnHelper = createColumnHelper<File>();
+export default PeopleListTable;
+const columnHelper = createColumnHelper<People>();

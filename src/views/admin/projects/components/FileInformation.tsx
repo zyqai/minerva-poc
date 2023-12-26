@@ -1,8 +1,9 @@
 
 import { useColorModeValue } from '@chakra-ui/react';
+import Card from 'components/card/Card';
 import Progress from 'components/progress';
 import { FcAlarmClock } from 'react-icons/fc';
-import Card from './Card';
+
 
 const FileInformation = (props: { file: any}) => {
     const { file  } = props;

@@ -4,7 +4,7 @@
 import { useColorModeValue } from '@chakra-ui/react';
 import { Box } from "@chakra-ui/react"
 import ProjectListTable from './components/ProjectListTable';
-import tableDataComplex from './variables/tableDataComplex';
+import tableDataComplex from 'variables/tableDataComplex';
 
 // Custom components
 
