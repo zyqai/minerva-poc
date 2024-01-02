@@ -12,6 +12,7 @@ import LendersPage from 'views/admin/lenders';
 import AccountsPage from 'views/admin/accounts';
 import PeoplePage from 'views/admin/people';
 import AddProject from 'views/admin/projects/AddProject';
+import AddPeople from 'views/admin/people/AddPeople';
 
 // Admin Imports
 import Project from 'views/admin/projects';
@@ -85,6 +86,15 @@ const routes: RoutesType[] = [
     icon: <Icon as={MdSettingsApplications} width="20px" height="20px" color="inherit" />,
     collapse: false,
     component: <AddProject />,
+  },
+  {
+    name: 'Add New People',
+    layout: '/admin',
+    path: '/dashboards/AddPeople',
+    isActive: false,
+    icon: <Icon as={MdSettingsApplications} width="20px" height="20px" color="inherit" />,
+    collapse: false,
+    component: <AddPeople />,
   },
 ];
 

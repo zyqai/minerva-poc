@@ -36,6 +36,11 @@ function PeopleListTable(props: { tableData: any }) {
   // const [fileDetailsView, setFileDetailsView] = React.useState(false);
   const [listViewCount, setListViewCount] = React.useState(6);
   const [globalFilter, setGlobalFilter] = React.useState('');
+
+  const addNewPeople = () => { 
+    navigate("/admin/dashboards/AddPeople");
+  };
+
   const createPages = (count: number) => {
     let arrPageCount = [];
 
@@ -130,9 +135,9 @@ function PeopleListTable(props: { tableData: any }) {
   });
   let activeColor = useColorModeValue('gray.700', 'white');
 
-  const addNewProjectClick = () => {
-    navigate('/admin/dashboards/AddProject');
-  };
+  // const addNewProjectClick = () => {
+  //   navigate('/admin/dashboards/AddProject');
+  // };
 
   const onPeopleClick = (peopleId: any, flag: any) => {
     let selectedPeople = data.find((people) => people.peopleId === peopleId);
@@ -203,7 +208,7 @@ function PeopleListTable(props: { tableData: any }) {
                 'linear flex p-1 cursor-pointer border-1 justify-around border border-gray-200 transition shadow-3xl px-10 shadow-shadow-100 hover:bg-blue-500 '
               }
               onClick={() => {
-                addNewProjectClick();
+                addNewPeople();
               }}
             >
               Import
@@ -213,7 +218,7 @@ function PeopleListTable(props: { tableData: any }) {
                 'linear flex p-1 cursor-pointer border-1 justify-around border border-gray-200 transition shadow-3xl px-10 shadow-shadow-100 hover:bg-blue-500 '
               }
               onClick={() => {
-                addNewProjectClick();
+                addNewPeople();
               }}
             >
               Add Person
